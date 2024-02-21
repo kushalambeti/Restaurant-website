@@ -1,0 +1,152 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Book a Table</title>
+        <style>
+
+
+
+            .loader {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: #333333;
+                transition: opacity 0.75s, visibility 0.75s;
+            }
+
+            .loader--hidden {
+                opacity: 0;
+                visibility: hidden;
+            }
+
+            .loader::after {
+                content: "";
+                width: 75px;
+                height: 75px;
+                border: 15px solid #dddddd;
+                border-top-color: #009578;
+                border-radius: 50%;
+                animation: loading 0.75s ease infinite;
+            }
+
+            @keyframes loading {
+                from {
+                    transform: rotate(0turn);
+                }
+                to {
+                    transform: rotate(1turn);
+                }
+            }
+
+
+            
+            body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('background_image.jpg'); 
+            background-size: cover;
+            background-position: center;
+            }
+
+        
+
+            main {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            height: 100vh; 
+            margin-top: 80px;
+            }
+
+            #booking {
+            width: 40%;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            margin-right: 20px;
+            }
+
+            #map {
+            flex-grow: 1;
+            margin-left: 20px;
+            height: 100%; 
+            }
+
+            input, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            }
+
+            button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="loader"></div>
+        <main>
+            <div id="booking">
+                <h2>Book a Table</h2>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="table">Select Table:</label>
+                <select id="table" name="table">
+                    <option value="1">Table 1</option>
+                    <option value="2">Table 2</option>
+                    <option value="3">Table 3</option>
+                    <option value="4">Table 4</option>
+                </select>
+
+                <button onclick="submitForm()">Submit</button>
+            </div>
+
+            <div id="map">
+                <P><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.3721097701864!2d80.15275167460538!3d13.075587312590875!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a526130ec0d668f%3A0x1e5e0f68449f9e63!2sSilver%20Platter!5e0!3m2!1sen!2sin!4v1700479232904!5m2!1sen!2sin" width="800" height="600" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></P>
+            </div>
+        </main>
+
+        <script>
+        
+
+        function submitForm() {
+        // Add logic to handle form submission
+        alert('Form submitted!');
+        }
+        </script>
+        <script>
+            window.addEventListener("load", () => {
+                const loader = document.querySelector(".loader");
+
+                loader.classList.add("loader--hidden");
+
+                loader.addEventListener("transitionend", () => {
+                    document.body.removeChild(loader);
+                });
+            });
+
+        </script>
+    
+    </body>
+</html>

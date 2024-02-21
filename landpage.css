@@ -1,0 +1,184 @@
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('2150690631.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: #fff;
+    --nav-load-time:300ms;
+    --nav-link-load-time:500ms;
+    --article-load-delay : 800ms;
+}
+
+header {
+    background-color: rgba(0, 0, 0, 0.5); 
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#logo {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    animation: nav-load var(--nav-load-time) ease-in;
+}
+
+
+ul{
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+
+}
+
+li{
+    margin: 0 10px;
+    animation: nav-link-load;
+    animation-duration: var(--nav-link-load-time);
+    animation-timing-function: ease-in;
+    animation-delay: var(--nav-load-time);
+    animation-fill-mode: forwards;
+    transform: scale(0);
+    
+}
+
+
+a {
+    text-decoration: none;
+    color: #fff;
+    transition: color 0.3s;
+}
+
+nav a:first-child {
+    animation: nav-first-link-load;
+    transform: translateX(-1000%); 
+
+}
+
+nav a:last-child{
+    animation: nav-last-link-load;
+    transform: translateX(1000%); 
+
+}
+
+
+
+nav a:hover {
+    background-color: rgba(255, 255, 255, 0.2); 
+}
+
+#onlod{
+    
+}
+
+
+
+section {
+    padding: 20px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 100px; 
+    margin-bottom: 5px;
+    font-family: 'Trebuchet MS', sans-serif; 
+    color: white;
+    position:relative; 
+    top: 110px; 
+    left: 1px;
+    animation: article-load 300ms ease-in var(--article-load-delay);
+    animation-fill-mode: forwards;
+    transform: translateY(-20px);
+    opacity: 0;
+}
+
+p {
+    font-size: 24px; 
+    font-family: Arial, sans-serif;
+    position:relative;
+    top: 120px;
+    left:5px;
+    color: white;
+    animation: article-load 300ms ease-in 1000ms;
+    animation-fill-mode: forwards;
+    transform: translateY(-20px);
+    opacity: 0;
+    
+}
+
+@keyframes nav-load {
+    0%{
+        transform: translateY(-100%);
+    }
+    
+    
+    100%{
+        transform: translateY(0);
+    }
+
+}
+
+@keyframes nav-link-load {
+    0%{
+        transform: scale(0);
+    }
+
+    90%{
+        transform: scale(1.1);
+    }
+    
+    100%{
+        transform: scale(1);
+    }
+}
+
+@keyframes nav-first-link-load {
+    0%{
+        transform: translateX(-1000%);
+    }
+
+    90%{
+        transform: translateX(50%);
+    }
+    
+    100%{
+        transform: translateX(0);
+    }
+}
+
+@keyframes nav-last-link-load {
+    0%{
+        transform: translateX(1000%);
+    }
+
+    90%{
+        transform: translateX(-50%);
+    }
+    
+    100%{
+        transform: translateX(0);
+    }
+}
+
+@keyframes article-load{
+    0%{
+        transform: translateY(-20px);
+        opacity:0;
+
+    }
+    100%{
+        transform: translateY(0px);
+        opacity:1;
+    }
+}

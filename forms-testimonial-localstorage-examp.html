@@ -1,0 +1,142 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+
+   
+    
+
+    .rev-section{
+        margin: auto;
+        padding: 0 1rem;
+        max-width: 1100px;
+        text-align: center;
+    }
+
+
+    .testimonial-box {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 10px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .reviewer-info {
+        margin: 0 1rem;
+        min-width: 300px;
+        flex: 1;
+    }
+
+    .reviewer-photo {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        margin-bottom: 10px;
+    }
+
+    .reviewer-name {
+        font-size: 1.5rem;
+        color: rgb(50, 50, 50);
+        margin-bottom: .25rem;
+    }
+
+    .reviewer-location {
+        color: red;
+        font-style: italic;
+    }
+
+    .review-text {
+        line-height: 1.5rem;
+        letter-spacing: 1px;
+        color: rgb(150, 150, 150);
+    }
+
+    .review-rating {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 10px;
+    }
+
+    .rating-stars {
+      font-size: 20px;
+      color: gold;
+      margin-right: 5px;
+    }
+  </style>
+</head>
+<body>
+
+    <div class="rev-section">
+
+        <h2 class="title">Testimonials</h2>
+
+        <div class="testimonial-container" id="testimonialContainer">
+            
+        </div>
+
+        
+    </div>
+
+  <script>
+    
+    var reviews = JSON.parse(localStorage.getItem('reviews')) || [];
+
+    
+    var testimonialContainer = document.getElementById('testimonialContainer');
+    reviews.forEach(function (review, index) {
+      var testimonialBox = document.createElement('div');
+      testimonialBox.className = 'testimonial-box';
+      testimonialBox.id = 'testimonial-' + index; 
+
+      var reviewerInfo = document.createElement('div');
+      reviewerInfo.className = 'reviewer-info';
+
+      var reviewerPhoto = document.createElement('img');
+      reviewerPhoto.className = 'reviewer-photo';
+      reviewerPhoto.src = review.photoURL || 'default-photo.jpg'; 
+      reviewerPhoto.alt = 'Reviewer Photo';
+
+      var reviewerName = document.createElement('div');
+      reviewerName.className = 'reviewer-name';
+      reviewerName.textContent = review.name;
+
+      var reviewerLocation = document.createElement('div');
+      reviewerLocation.className = 'reviewer-location';
+      reviewerLocation.textContent = review.address;
+
+      reviewerInfo.appendChild(reviewerPhoto);
+      reviewerInfo.appendChild(reviewerName);
+      reviewerInfo.appendChild(reviewerLocation);
+
+      var reviewText = document.createElement('div');
+      reviewText.className = 'review-text';
+      reviewText.textContent = review.review;
+
+      var reviewRating = document.createElement('div');
+      reviewRating.className = 'review-rating';
+
+      for (let i = 1; i <= 5; i++) {
+        const star = document.createElement('span');
+        star.className = 'rating-stars';
+        star.innerHTML = i <= review.rating ? '&#9733;' : '&#9734;'; // Full or empty star based on rating
+        reviewRating.appendChild(star);
+      }
+
+      
+
+      testimonialBox.appendChild(reviewerInfo);
+      testimonialBox.appendChild(reviewRating);
+      testimonialBox.appendChild(reviewText);
+      testimonialContainer.appendChild(testimonialBox);
+    });
+  </script>
+
+</body>
+</html>

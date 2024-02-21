@@ -1,0 +1,172 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 10px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    form {
+      display: grid;
+      gap: 20px; 
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+    }
+
+    .checkbox-group input {
+      margin-right: 5px;
+    }
+
+    textarea {
+      width: 100%;
+      height: 100px;
+    }
+
+    .rating-container {
+      margin-top: 10px;
+    }
+
+    .rating-stars {
+      display: inline-block;
+      font-size: 24px;
+      cursor: pointer;
+      color: #ccc; /* Default star color */
+    }
+
+    button {
+      background-color: #333;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="C:\Users\Kishore\Downloads\WhatsApp Image 2023-11-17 at 10.14.27_2fbccd77.png" alt="Logo" width="50" height="50">
+  </header>
+
+  <div class="container">
+    <form id="reviewForm">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="visitDate">Date of Visit:</label>
+      <input type="date" id="visitDate" name="visitDate" required>
+
+      <label for="photoURL">Photo URL:</label>
+      <input type="text" id="photoURL" name="photoURL" placeholder="Enter photo URL">
+
+      <label for="address">Location:</label>
+      <input type="text" id="address" name="address" placeholder="Enter location">
+
+      <div class="rating-container">
+        <p>Your Rating:</p>
+        <div class="rating-stars" onclick="setRating(1)" id="star1">&#9734;</div>
+        <div class="rating-stars" onclick="setRating(2)" id="star2">&#9734;</div>
+        <div class="rating-stars" onclick="setRating(3)" id="star3">&#9734;</div>
+        <div class="rating-stars" onclick="setRating(4)" id="star4">&#9734;</div>
+        <div class="rating-stars" onclick="setRating(5)" id="star5">&#9734;</div>
+      </div>
+
+      <label for="review">Address your review:</label>
+      <textarea id="review" name="review"></textarea>
+
+      <button type="button" onclick="submitReview()">Submit Review</button>
+    </form>
+  </div>
+
+  <script>
+
+    function setRating(rating) {
+            selectedRating = rating;
+            highlightStars();
+    }
+
+    function highlightStars() {
+      for (let i = 1; i <= 5; i++) {
+        const star = document.getElementById(`star${i}`);
+        if (i <= selectedRating) {
+          star.innerHTML = '&#9733;'; 
+          star.style.color = 'gold';
+        } else if (i - 0.5 <= selectedRating) {
+          star.innerHTML = '&#9733;&#9734;'; 
+          star.style.color = 'gold';
+        } else {
+          star.innerHTML = '&#9734;'; 
+          star.style.color = '#ccc';
+        }
+      }
+    }
+
+    function submitReview() {
+      var name = document.getElementById('name').value;
+      var email = document.getElementById('email').value;
+      var visitDate = document.getElementById('visitDate').value;
+      var photoURL = document.getElementById('photoURL').value;
+      var address = document.getElementById('address').value;
+      var review = document.getElementById('review').value;
+
+      
+      var reviews = JSON.parse(localStorage.getItem('reviews')) || [];
+
+      
+      reviews.push({
+        name: name,
+        email: email,
+        visitDate: visitDate,
+        photoURL: photoURL,
+        address: address,
+        review: review,
+        rating: selectedRating
+      });
+
+      
+      localStorage.setItem('reviews', JSON.stringify(reviews));
+
+      alert('Review submitted successfully!');
+
+        
+      window.location.href = 'landing page.html';
+    }
+  </script>
+
+</body>
+</html>

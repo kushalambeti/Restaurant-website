@@ -1,0 +1,137 @@
+
+.loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #333333;
+    transition: opacity 0.75s, visibility 0.75s;
+}
+
+.loader--hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loader::after {
+    content: "";
+    width: 75px;
+    height: 75px;
+    border: 15px solid #dddddd;
+    border-top-color: #009578;
+    border-radius: 50%;
+    animation: loading 0.75s ease infinite;
+}
+
+@keyframes loading {
+    from {
+        transform: rotate(0turn);
+    }
+    to {
+        transform: rotate(1turn);
+    }
+}
+
+
+
+body {
+margin: 0;
+font-family: Arial, sans-serif;
+background-image: url('background_image.jpg'); /* Replace with the path to your background image */
+background-size: cover;
+background-position: center;
+}
+
+
+
+main {
+display: flex;
+justify-content: center;
+align-items: flex-start; /* Align items to the top */
+height: 100vh; /* Set height to 100% of the viewport height */
+margin-top: 80px;
+}
+
+#booking {
+width: 40%;
+padding: 20px;
+background-color: rgba(255, 255, 255, 0.8);
+border-radius: 10px;
+margin-right: 20px;
+}
+
+#map {
+flex-grow: 1;
+margin-left: 20px;
+height: 100%; /* Set map height to 100% of the parent container */
+}
+
+input, select {
+width: 100%;
+padding: 10px;
+margin-bottom: 15px;
+}
+
+button {
+width: 100%;
+padding: 10px;
+background-color: #4CAF50;
+color: white;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+}
+
+.popup{
+    width: 400px;
+    background: grey;
+    border-radius: 6px;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%,-50%) scale(0.1);
+    text-align: center;
+    padding: 0 30px 30px;
+    color: #333;
+    visibility: hidden;
+    transition: transform 0.4s,top 0.4s;
+}
+
+.open-Popup{
+    visibility: visible;
+    top:50%;
+    transform: translate(-50%,-50%) scale(1);
+}
+
+.popup img{
+    width: 100px;
+    margin-top: -50px;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    
+}
+
+.popup h2{
+    font-size: 30px;
+    font-weight: 500;
+    margin: 30px 0 10px;
+
+}
+
+.popup button{
+    width: 100%;
+    margin-top: 50px;
+    padding: 10px 0;
+    background: #6fd649;
+    color:#fff ;
+    border: 0;
+    outline: none;
+    font-size: 18px;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
